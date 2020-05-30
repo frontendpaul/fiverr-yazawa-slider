@@ -34,10 +34,28 @@ class SiemaWithDots extends Siema {
     for (let i = 0; i < this.dots.querySelectorAll("button").length; i++) {
       // if current dot matches currentSlide prop, add a class to it, remove otherwise
       const addOrRemove = this.currentSlide === i ? "add" : "remove";
+      const visited = this.currentSlide > i ? "add" : "remove";
       this.dots
         .querySelectorAll("button")
         [i].classList[addOrRemove]("dots__item--active");
+      this.dots
+        .querySelectorAll("button")
+        [i].classList[visited]("dots__item--visited");
     }
+  }
+}
+
+const disableControlls = function(instantionOfSiema) {
+  if (instantionOfSiema.currentSlide === 0) {
+    document.querySelector(".prev").classList.add('controlls--inactive');
+  } else {
+    document.querySelector(".prev").classList.remove('controlls--inactive');
+  }
+
+  if (instantionOfSiema.currentSlide === instantionOfSiema.innerElements.length - 1) {
+    document.querySelector(".next").classList.add('controlls--inactive')
+  } else {
+    document.querySelector(".next").classList.remove('controlls--inactive');
   }
 }
 
@@ -52,8 +70,10 @@ const mySiemaWithDots = new SiemaWithDots({
   // on change trigger method created above
   onChange: function () {
     this.updateDots();
+    disableControlls(mySiemaWithDots);
   },
 });
+
 
 document
   .querySelector(".prev")

@@ -24,6 +24,7 @@ img {
   justify-content: center;
   position: absolute;
   top: 27px;
+  z-index: 2;
 }
 
 .dots__item {
@@ -42,16 +43,26 @@ img {
   background: #FFF;
 }
 
-.controls {
+.dots__item--visited {
+  background: url(./dot.svg) center center/contain no-repeat;
+  background-size: 60%;
+}
+
+.controlls {
   width: 100%;
-  height: 100%;
+  height: 58px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
   position: absolute;
-  top: 0;
+  top: 42.5%;
   left: 0;
+}
+
+.controlls--inactive {
+  opacity: 0.3;
+  cursor: initial;
 }
 
 .prev,
@@ -72,3 +83,9 @@ img {
   outline: 0;
 }
 
+
+.content {
+  position: absolute;
+  bottom: 27px;
+  background: rgba(255, 255, 255, .2);
+}
