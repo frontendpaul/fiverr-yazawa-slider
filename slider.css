@@ -48,23 +48,6 @@ img {
   background-size: 60%;
 }
 
-.controlls {
-  width: 100%;
-  height: 58px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-  position: absolute;
-  top: 42.5%;
-  left: 0;
-}
-
-.controlls--inactive {
-  opacity: 0.3;
-  cursor: initial;
-}
-
 .prev,
 .next {  
   width: 58px;
@@ -72,6 +55,21 @@ img {
   background: url(https://getinclusive-assets.s3.amazonaws.com/Hype/groundswell/Asked%20%26%20Answered/Asked%20%26%20Answered.hyperesources/PastedVector.svg) center center/contain no-repeat;
   border: 0;
   cursor: pointer;
+  position: absolute;
+  top: 44%;
+}
+
+.prev {
+  left: 40px;
+}
+
+.next {
+  right: 40px;
+}
+
+.controlls--inactive {
+  opacity: 0.3;
+  cursor: grab;
 }
 
 .prev {
@@ -84,8 +82,40 @@ img {
 }
 
 
+.slide {
+  position: relative;
+}
+
 .content {
+  width: 508px;
   position: absolute;
-  bottom: 27px;
-  background: rgba(255, 255, 255, .2);
+  bottom: 70px;
+  left: 100px;
+  color: #FFF;
+}
+
+.title {
+  font-size: 2.375rem;
+  text-transform: uppercase;
+  margin: 0 0 0.5em 0;
+}
+
+.copy {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.arrow {
+  width: 150px;
+  height: 100px;
+  background: url("https://getinclusive-assets.s3.amazonaws.com/Hype/groundswell/Asked%20%26%20Answered/Asked%20%26%20Answered.hyperesources/PastedVector-2.svg") center center/30% no-repeat;
+  background-position: 80px 42px;
+  position: absolute;
+  top: 30%;
+  right: 70px;
+  color: #FFF;
+  font-size: 42px;
+  font-family: Tegami-One;
+  transform-origin: 50% 50%;
+  transform: rotate(352deg) rotateY(0deg);
 }

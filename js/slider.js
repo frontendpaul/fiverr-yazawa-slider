@@ -43,24 +43,34 @@ class SiemaWithDots extends Siema {
         [i].classList[visited]("dots__item--visited");
     }
   }
-}
 
-const disableControlls = function(instantionOfSiema) {
-  if (instantionOfSiema.currentSlide === 0) {
-    document.querySelector(".prev").classList.add('controlls--inactive');
-  } else {
-    document.querySelector(".prev").classList.remove('controlls--inactive');
-  }
-
-  if (instantionOfSiema.currentSlide === instantionOfSiema.innerElements.length - 1) {
-    document.querySelector(".next").classList.add('controlls--inactive')
-  } else {
-    document.querySelector(".next").classList.remove('controlls--inactive');
+  updateControlls() {
+    const isFirst = this.currentSlide === 0 ? "add" : "remove";
+    const isLast = this.currentSlide === (this.innerElements.length - 1) ? "add" : "remove";
+    
+    document.querySelector(".prev").classList[isFirst]('controlls--inactive');
+    document.querySelector(".next").classList[isLast]('controlls--inactive');
   }
 }
+
+// const disableControlls = function(instantionOfSiema) {
+//   if (instantionOfSiema.currentSlide === 0) {
+//     document.querySelector(".prev").classList.add('controlls--inactive');
+//   } else {
+//     document.querySelector(".prev").classList.remove('controlls--inactive');
+//   }
+
+//   if (instantionOfSiema.currentSlide === instantionOfSiema.innerElements.length - 1) {
+//     document.querySelector(".next").classList.add('controlls--inactive')
+//   } else {
+//     document.querySelector(".next").classList.remove('controlls--inactive');
+//   }
+// }
 
 // instantiate new extended Siema
 const mySiemaWithDots = new SiemaWithDots({
+  easing: 'cubic-bezier(0.76, 0, 0.24, 1)',
+  duration: 500,
   // on init trigger method created above
   onInit: function () {
     this.addDots();
@@ -70,14 +80,16 @@ const mySiemaWithDots = new SiemaWithDots({
   // on change trigger method created above
   onChange: function () {
     this.updateDots();
-    disableControlls(mySiemaWithDots);
+    this.updateControlls();
+    // disableControlls(mySiemaWithDots);
   },
 });
 
 
 document
   .querySelector(".prev")
-  .addEventListener("click", () => mySiemaWithDots.prev());
+  .addEventListener("click", () => {mySiemaWithDots.prev(); console.log('click');
+  });
 document
   .querySelector(".next")
   .addEventListener("click", () => mySiemaWithDots.next());
