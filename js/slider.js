@@ -44,32 +44,21 @@ class SiemaWithDots extends Siema {
     }
   }
 
-  updateControlls() {
+  // Add middle circle to visited dots
+  updateControls() {
     const isFirst = this.currentSlide === 0 ? "add" : "remove";
-    const isLast = this.currentSlide === (this.innerElements.length - 1) ? "add" : "remove";
-    
-    document.querySelector(".prev").classList[isFirst]('controlls--inactive');
-    document.querySelector(".next").classList[isLast]('controlls--inactive');
+    const isLast =
+      this.currentSlide === this.innerElements.length - 1 ? "add" : "remove";
+
+    document.querySelector(".prev").classList[isFirst]("controls--inactive");
+    document.querySelector(".next").classList[isLast]("controls--inactive");
   }
 }
 
-// const disableControlls = function(instantionOfSiema) {
-//   if (instantionOfSiema.currentSlide === 0) {
-//     document.querySelector(".prev").classList.add('controlls--inactive');
-//   } else {
-//     document.querySelector(".prev").classList.remove('controlls--inactive');
-//   }
-
-//   if (instantionOfSiema.currentSlide === instantionOfSiema.innerElements.length - 1) {
-//     document.querySelector(".next").classList.add('controlls--inactive')
-//   } else {
-//     document.querySelector(".next").classList.remove('controlls--inactive');
-//   }
-// }
 
 // instantiate new extended Siema
 const mySiemaWithDots = new SiemaWithDots({
-  easing: 'cubic-bezier(0.76, 0, 0.24, 1)',
+  easing: "cubic-bezier(0.76, 0, 0.24, 1)",
   duration: 500,
   // on init trigger method created above
   onInit: function () {
@@ -80,16 +69,39 @@ const mySiemaWithDots = new SiemaWithDots({
   // on change trigger method created above
   onChange: function () {
     this.updateDots();
-    this.updateControlls();
-    // disableControlls(mySiemaWithDots);
+    this.updateControls();
+    // disableControls(mySiemaWithDots);
   },
 });
 
 
+// Controls 
 document
   .querySelector(".prev")
-  .addEventListener("click", () => {mySiemaWithDots.prev(); console.log('click');
-  });
+  .addEventListener("click", () => mySiemaWithDots.prev());
 document
   .querySelector(".next")
   .addEventListener("click", () => mySiemaWithDots.next());
+
+
+// Modal Handling
+const card1 = document.querySelector("#card-1");
+const card2 = document.querySelector("#card-2");
+const card3 = document.querySelector("#card-3");
+const modal1 = document.querySelector("#answer-1");
+const modal2 = document.querySelector("#answer-2");
+const modal3 = document.querySelector("#answer-3");
+const modalWrappers = document.querySelectorAll(".modal-wrapper");
+const closeBtns = document.querySelectorAll(".modal__btn");
+
+card1.addEventListener("click", () => modal1.classList.toggle("is-active"));
+card2.addEventListener("click", () => modal2.classList.toggle("is-active"));
+card3.addEventListener("click", () => modal3.classList.toggle("is-active"));
+
+for (const btn of closeBtns) {
+  btn.addEventListener("click", () => {
+    for (const wrapper of modalWrappers) {
+      wrapper.classList.remove("is-active");
+    }
+  });
+}

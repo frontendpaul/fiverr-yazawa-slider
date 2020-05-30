@@ -1,10 +1,12 @@
+@import "https://getinclusive-fonts.s3.amazonaws.com/assets/getinclusive_fonts.css";
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Knockout-48", sans-serif;
 }
 
 img {
@@ -30,17 +32,17 @@ img {
 .dots__item {
   width: 15px;
   height: 15px;
-  margin: 0 .35rem;
+  margin: 0 0.35rem;
   border: 0;
   background-color: transparent;
   border-radius: 50%;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   outline: 0;
   cursor: pointer;
 }
 
 .dots__item--active {
-  background: #FFF;
+  background: #fff;
 }
 
 .dots__item--visited {
@@ -49,10 +51,11 @@ img {
 }
 
 .prev,
-.next {  
+.next {
   width: 58px;
   height: 58px;
-  background: url(https://getinclusive-assets.s3.amazonaws.com/Hype/groundswell/Asked%20%26%20Answered/Asked%20%26%20Answered.hyperesources/PastedVector.svg) center center/contain no-repeat;
+  background: url(https://getinclusive-assets.s3.amazonaws.com/Hype/groundswell/Asked%20%26%20Answered/Asked%20%26%20Answered.hyperesources/PastedVector.svg)
+    center center/contain no-repeat;
   border: 0;
   cursor: pointer;
   position: absolute;
@@ -67,8 +70,8 @@ img {
   right: 40px;
 }
 
-.controlls--inactive {
-  opacity: 0.3;
+.controls--inactive {
+  opacity: 0.25;
   cursor: grab;
 }
 
@@ -77,10 +80,10 @@ img {
 }
 
 .prev:focus,
-.next:focus {
+.next:focus,
+.modal__btn:focus {
   outline: 0;
 }
-
 
 .slide {
   position: relative;
@@ -89,18 +92,24 @@ img {
 .content {
   width: 508px;
   position: absolute;
-  bottom: 70px;
-  left: 100px;
-  color: #FFF;
+  bottom: 65px;
+  left: 110px;
+  color: #fff;
 }
 
 .title {
-  font-size: 2.375rem;
+  font-size: 3rem;
+  font-weight: normal;
   text-transform: uppercase;
-  margin: 0 0 0.5em 0;
+  margin: 0 0 0.25em 0;
+}
+
+.title--center {
+  text-align: center;
 }
 
 .copy {
+  font-family: "ProximaNova-Semibold", sans-serif;
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
@@ -108,14 +117,152 @@ img {
 .arrow {
   width: 150px;
   height: 100px;
-  background: url("https://getinclusive-assets.s3.amazonaws.com/Hype/groundswell/Asked%20%26%20Answered/Asked%20%26%20Answered.hyperesources/PastedVector-2.svg") center center/30% no-repeat;
-  background-position: 80px 42px;
+  background: url("https://getinclusive-assets.s3.amazonaws.com/Hype/groundswell/Asked%20%26%20Answered/Asked%20%26%20Answered.hyperesources/PastedVector-2.svg")
+    center center/30% no-repeat;
+  background-position: 50px 44px;
   position: absolute;
   top: 30%;
-  right: 70px;
-  color: #FFF;
+  right: 30px;
+  color: #fff;
   font-size: 42px;
-  font-family: Tegami-One;
+  font-family: "TegamiOne";
   transform-origin: 50% 50%;
   transform: rotate(352deg) rotateY(0deg);
+}
+
+.choices {
+  width: 93%;
+  left: 3.5%;
+  bottom: 90px;
+}
+
+.choices .title {
+  font-size: 2.5rem;
+  margin-bottom: 0.6em;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 278px;
+  height: 162px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.card__title {
+  color: rgb(0, 178, 116);
+  font-size: 2.5rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.card__copy {
+  color: rgb(64, 64, 64);
+  font-family: "ProximaNova-Semibold", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  text-align: center;
+  margin: 0;
+  padding: 8px 18px;
+}
+
+.modal-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  top: -706px;
+  z-index: 20;
+  transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.modal-wrapper.is-active {
+  top: 0;
+  background-color: rgba(51, 51, 51, 0.8);
+  transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+  background-color 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.modal {
+  width: 468px;
+  height: 327px;
+  margin: 0 auto;
+  background: rgb(242, 242, 242);
+  position: relative;
+}
+
+.status-bar {
+  width: 468px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.status-bar.incorrect {
+  background-color: rgb(241, 93, 94);
+}
+.status-bar.correct {
+  background-color: rgb(0, 178, 116);
+}
+
+.status-bar__title {
+  font-size: 2.5625rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #FFF;
+  margin: 0;
+  position: relative;
+  left: 100px;
+  top: 2px;
+}
+
+.status-bar__title::before {
+  content: "";
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: -60px;
+  top: -6px;
+}
+
+.incorrect .status-bar__title::before {
+  background: url("https://getinclusive-assets.s3.amazonaws.com/Hype/groundswell/Asked%20%26%20Answered/Asked%20%26%20Answered.hyperesources/incorrectIndicator-01-1.svg") center center/contain no-repeat;
+}
+
+.correct .status-bar__title::before {
+  background: url("https://getinclusive-assets.s3.amazonaws.com/Hype/groundswell/Asked%20%26%20Answered/Asked%20%26%20Answered.hyperesources/correctIndicator-1.svg") center center/contain no-repeat;
+}
+
+.modal__copy {
+  color: rgb(64, 64, 64);
+  font-family: 'ProximaNova-Regular';
+  font-size: 1rem;
+  line-height: 1.375em;
+  margin: 0;
+  padding: 36px;
+}
+
+.modal__btn {
+  height: 54px;
+  font-family: 'ProximaNova-Bold';
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+  background-color: rgb(0, 181, 204);
+  color: #FFF;
+  border: 0;
+  padding: 0 40px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
 }
